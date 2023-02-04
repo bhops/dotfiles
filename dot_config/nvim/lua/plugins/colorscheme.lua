@@ -11,8 +11,5 @@ return {
     opts = {
       flavour = "macchiato",
     },
-    config = function()
-      vim.cmd([[colorscheme catppuccin-macchiato]])
-    end,
   },
 }
