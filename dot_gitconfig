@@ -1,0 +1,24 @@
+[alias]
+	a = add
+	b = branch
+	c = commit
+	ca = commit --amend
+	cm = commit --message
+	d = diff
+	dc = diff --cached
+	ds = diff --staged
+	l = log
+	lg = log --graph
+	lo = log --oneline
+	co = checkout
+	cob = checkout -b
+	s = status --short --branch
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore_global
+[fetch]
+	prune = true
+[init]
+	defaultBranch = main
+[user]
+	email = hops.brandon@gmail.com
