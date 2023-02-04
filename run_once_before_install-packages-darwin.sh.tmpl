@@ -1,0 +1,39 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+tap "aws/tap"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/core"
+brew "antibody"
+brew "awscli"
+brew "bash"
+brew "bash-completion@2"
+brew "chezmoi"
+brew "curl"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "go"
+brew "ipcalc"
+brew "jq"
+brew "neovim", args: ["HEAD"]
+brew "openssl@3"
+brew "pyenv"
+brew "pyenv-virtualenv"
+brew "ripgrep"
+brew "rustup-init"
+brew "tmux"
+brew "zsh"
+cask "docker"
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
+cask "google-chrome"
+cask "iterm2"
+cask "rectangle"
+cask "slack"
+cask "spotify"
+EOF
+{{ end -}}

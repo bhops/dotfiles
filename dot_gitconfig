@@ -22,3 +22,5 @@
 	defaultBranch = main
 [user]
 	email = hops.brandon@gmail.com
+[push]
+	autoSetupRemote = true
