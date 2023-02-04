@@ -31,7 +31,6 @@ mkdir -p ${HOME}/.nvm
 
 alias g="git"
 alias gs="git s"
-alias d="docker"
 alias k="kubectl"
 alias vim="nvim"
 
