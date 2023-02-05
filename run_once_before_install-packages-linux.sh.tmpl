@@ -1,0 +1,34 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+sudo apt-get install -y software-properties-common
+
+sudo add-apt-repository -y ppa:neovim-ppa/stable
+
+sudo apt-get update
+sudo apt-get install -y \
+  awscli \
+  curl \
+  git \
+  neovim \
+  tmux \
+  zsh
+
+[ ! -d ~/.pyenv ] && git clone https://github.com/pyenv/pyenv.git ~/.pyenv/
+if [ ! -d ~/.nvm ]; then
+  git clone https://github.com/nvm-sh/nvm.git ~/.nvm
+  cd ~/.nvm
+  git checkout $(git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1))
+  cd -
+fi
+
+if [ -d ~/.nvim ] && ! command -v npm &> /dev/null; then
+  if ! command -v nvm &> /dev/null; then
+    \. ~/.nvm/nvm.sh
+  fi
+  nvm install --lts
+  nvm use --lts
+fi
+
+exit 0
+{{ end -}}

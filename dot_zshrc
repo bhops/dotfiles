@@ -1,18 +1,5 @@
 ZSH_DISABLE_COMPFIX="true"
 
-# Load Antibody
-source <(antibody init)
-
-antibody bundle robbyrussell/oh-my-zsh
-antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
-antibody bundle robbyrussell/oh-my-zsh path:plugins/git
-antibody bundle robbyrussell/oh-my-zsh path:plugins/z
-antibody bundle zsh-users/zsh-autosuggestions
-antibody bundle dracula/zsh
-
-# This needs to be the last bundle
-antibody bundle zsh-users/zsh-syntax-highlighting
-
 path=(
     ${HOME}/bin
     ${HOME}/go/bin
@@ -25,9 +12,13 @@ export EDITOR=nvim
 
 
 # nvm setup
-mkdir -p ${HOME}/.nvm
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if [[ "$(uname)" == "Darwin" ]]; then
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+else
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+fi
 
 alias g="git"
 alias gs="git s"
@@ -35,7 +26,13 @@ alias k="kubectl"
 alias vim="nvim"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source $HOME/.cargo/env
+[ -f ~/$HOME/.cargo/env ] && source $HOME/.cargo/env
+
+export PYENV_ROOT="$HOME/.pyenv"
+
+command -v pyenv &> /dev/null || export PATH="${PYENV_ROOT}/bin:${PATH}"
 eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-eval "$(direnv hook zsh)"
+
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
