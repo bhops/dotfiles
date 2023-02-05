@@ -12,9 +12,27 @@ sudo apt-get install -y \
   git \
   neovim \
   tmux \
-  zsh
+  zsh \
+  build-essential \
+  libssl-dev \
+  zlib1g-dev \
+  libreadline-dev  \
+  libsqlite3-dev \
+  libbz2-dev \
+  libncursesw5-dev \
+  xz-utils  \
+  tk-dev  \
+  libxml2-dev \
+  libxmlsec1-dev \
+  libffi-dev \
+  liblzma-dev
+
 
 [ ! -d ~/.pyenv ] && git clone https://github.com/pyenv/pyenv.git ~/.pyenv/
+eval "$(pyenv init -)"
+pyenv install --skip-existing 3.11.1
+pyenv global 3.11.1
+
 if [ ! -d ~/.nvm ]; then
   git clone https://github.com/nvm-sh/nvm.git ~/.nvm
   cd ~/.nvm
@@ -29,6 +47,12 @@ if [ -d ~/.nvim ] && ! command -v npm &> /dev/null; then
   nvm install --lts
   nvm use --lts
 fi
+
+curl --output-dir "/tmp" -L0 -O https://go.dev/dl/go1.20.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf /tmp/go1.20.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+
+go install github.com/jesseduffield/lazygit@latest
 
 exit 0
 {{ end -}}
