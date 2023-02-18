@@ -23,6 +23,7 @@ return {
     },
     opts = {
       servers = {
+        tsserver = {},
         bashls = {},
         dockerls = {},
         gopls = {
@@ -40,20 +41,7 @@ return {
         },
         jsonls = {},
         yamlls = {},
-        sumneko_lua = {
-          single_file_support = true,
-          settings = {
-            Lua = {
-              workspace = {
-                checkThirdParty = false,
-              },
-              completion = {
-                workspaceWord = true,
-                callSnippet = "Both",
-              },
-            },
-          },
-        },
+        lua_ls = {},
         vimls = {},
       },
     },
