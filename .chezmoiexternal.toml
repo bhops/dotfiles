@@ -4,10 +4,3 @@
   exact = true
   stripComponents = 1
   refreshPeriod = "168h"
-
-[".config/nvim"]
-  type = "archive"
-  url = "https://github.com/NvChad/NvChad/archive/master.tar.gz" 
-  stripComponents = 1
-  refreshPeriod = "48h"
-  exclude = ["**/.git"]
