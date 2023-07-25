@@ -27,8 +27,12 @@ alias gs="git s"
 alias k="kubectl"
 alias vim="nvim"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/$HOME/.cargo/env ] && source $HOME/.cargo/env
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+fi
+if [[ -f ~/$HOME/.cargo/env ]]; then
+  source $HOME/.cargo/env
+fi
 
 if command -v direnv &> /dev/null; then
   eval "$(direnv hook zsh)"
