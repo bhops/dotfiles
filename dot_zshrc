@@ -27,3 +27,7 @@ fi
 if command -v direnv &> /dev/null; then
   eval "$(direnv hook zsh)"
 fi
+
+if [[ -f "$HOME/.config/op/plugins/sh" ]]; then
+  source "$HOME/.config/op/plugins.sh"
+fi
