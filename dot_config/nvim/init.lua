@@ -14,6 +14,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
@@ -31,6 +34,12 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
       'folke/neodev.nvim',
     },
+  },
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      require('nvim-tree').setup {}
+    end,
   },
   {
     'NeogitOrg/neogit',
@@ -131,6 +140,7 @@ require('lazy').setup({
   },
   {
     'lukas-reineke/indent-blankline.nvim',
+    main = 'ibl',
     event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       char = '┊',
