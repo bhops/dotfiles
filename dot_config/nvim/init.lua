@@ -17,6 +17,7 @@ vim.g.maplocalleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+
 require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
@@ -147,15 +148,27 @@ require('lazy').setup({
     main = 'ibl',
     event = { 'BufReadPost', 'BufNewFile' },
     opts = {
-      char = '┊',
-      filetype_exclude = {
-        "help",
-        "alpha",
-        "lazy",
-        "mason",
-        "notify",
+      indent = {
+        char = '┊',
       },
-      show_trailing_blankline_indent = false,
+      exclude = {
+        filetypes = {
+          "help",
+          "alpha",
+          "lazy",
+          "mason",
+          "notify",
+        },
+        buftypes = {
+          "terminal",
+          "nofile",
+          "quickfix",
+          "prompt",
+          "help",
+          "lazy",
+          "",
+        },
+      },
     },
   },
   {
@@ -303,8 +316,9 @@ mason_lspconfig.setup_handlers {
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
--- require('luasnip.loaders.from_vscode').lazy_load()
--- luasnip.config.setup {}
+require('luasnip.loaders.from_vscode').lazy_load()
+luasnip.config.setup {}
+
 
 cmp.setup {
   snippet = {
