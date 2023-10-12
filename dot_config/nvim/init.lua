@@ -273,6 +273,7 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
+  vale_ls = {},
   gopls = {
     cmd = { "gopls", "serve" },
     settings = {
