@@ -95,21 +95,6 @@ require('lazy').setup({
     }
   },
   {
-    'mfussenegger/nvim-lint',
-    config = function()
-      vim.api.nvim_create_autocmd({ "TextChanged" }, {
-        callback = function()
-          require('lint').try_lint()
-        end,
-      })
-      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        callback = function()
-          require('lint').try_lint()
-        end,
-      })
-    end,
-  },
-  {
     'jinh0/eyeliner.nvim',
     config = function()
       require 'eyeliner'.setup {
