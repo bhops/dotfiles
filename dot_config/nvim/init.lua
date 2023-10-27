@@ -172,8 +172,6 @@ require('lazy').setup({
     },
     build = ':TSUpdate'
   },
-  require 'custom.plugins',
-  require 'kickstart.plugins.autoformat'
 }, {})
 
 vim.o.hlsearch = false
@@ -251,10 +249,6 @@ local on_attach = function(_, bufnr)
 
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
 end
 
 local servers = {
