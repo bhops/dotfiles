@@ -16,6 +16,9 @@ vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.lsp.set_log_level("debug")
+require("vim.lsp.log").set_format_func(vim.inspect)
+
 require("lazy").setup({
 	{
 		"neovim/nvim-lspconfig",
@@ -51,12 +54,22 @@ require("lazy").setup({
 	{
 		"rest-nvim/rest.nvim",
 		dependencies = { { "nvim-lua/plenary.nvim" } },
+		keys = {
+			{
+				"<leader>rr",
+				function()
+					require("rest-nvim").run()
+				end,
+				mode = "",
+				desc = "REST Request",
+			},
+		},
 		config = function()
 			require("rest-nvim").setup({
 				-- Open request results in a horizontal split
-				result_split_horizontal = false,
+				result_split_horizontal = true,
 				-- Keep the http file buffer above|left when split horizontal|vertical
-				result_split_in_place = false,
+				result_split_in_place = true,
 				-- Skip SSL verification, useful for unknown certificates
 				skip_ssl_verification = false,
 				-- Encode URL before making request
@@ -71,7 +84,7 @@ require("lazy").setup({
 					show_url = true,
 					-- show the generated curl command in case you want to launch
 					-- the same request via the terminal (can be verbose)
-					show_curl_command = false,
+					show_curl_command = true,
 					show_http_info = true,
 					show_headers = true,
 					-- executables or functions for formatting response body [optional]
@@ -326,7 +339,10 @@ vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch Current [W]ord" })
 vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch [G]rep" })
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iangostics" })
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
+	if client.supports_method("textDocument/inlayHint") then
+		vim.lsp.inlay_hint.enable(bufnr, true)
+	end
 	local nmap = function(keys, func, desc)
 		if desc then
 			desc = "LSP " .. desc
