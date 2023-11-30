@@ -16,9 +16,6 @@ vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.lsp.set_log_level("debug")
-require("vim.lsp.log").set_format_func(vim.inspect)
-
 require("lazy").setup({
 	{
 		"neovim/nvim-lspconfig",
