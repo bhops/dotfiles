@@ -52,6 +52,16 @@ require("lazy").setup({
 		},
 	},
 	{
+		"saecki/crates.nvim",
+		tag = "stable",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("crates").setup({
+				src = { cmp = { enabled = true } },
+			})
+		end,
+	},
+	{
 		"rest-nvim/rest.nvim",
 		dependencies = { { "nvim-lua/plenary.nvim" } },
 		keys = {
@@ -66,6 +76,8 @@ require("lazy").setup({
 		},
 		config = function()
 			require("rest-nvim").setup({
+				-- Don't move focus to the split
+				stay_in_current_window_after_split = true,
 				-- Open request results in a horizontal split
 				result_split_horizontal = true,
 				-- Keep the http file buffer above|left when split horizontal|vertical
@@ -378,7 +390,13 @@ local servers = {
 			},
 		},
 	},
-	rust_analyzer = {},
+	rust_analyzer = {
+		["rust-analyzer"] = {
+			check = {
+				command = "clippy",
+			},
+		},
+	},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
@@ -451,5 +469,6 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "crates" },
 	},
 })
