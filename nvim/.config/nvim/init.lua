@@ -49,22 +49,29 @@ require("lazy").setup({
 		},
 	},
 	{
+		"echasnovski/mini.files",
+		version = "*",
+		setup = function()
+			require("mini.files").setup()
+		end,
+		keys = {
+			{
+				"<leader><space>",
+				function()
+					require("mini.files").open()
+				end,
+				mode = "",
+				desc = "Open mini.files",
+			},
+		},
+	},
+	{
 		"saecki/crates.nvim",
 		tag = "stable",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("crates").setup({
 				src = { cmp = { enabled = true } },
-			})
-		end,
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		config = function()
-			require("nvim-tree").setup({
-				filters = {
-					dotfiles = true,
-				},
 			})
 		end,
 	},
@@ -288,7 +295,6 @@ require("telescope").setup({
 pcall(require("telescope").load_extension, "fzf")
 
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
-vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
 vim.keymap.set("n", "<leader>/", function()
 	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 		winblend = 10,

@@ -6,8 +6,8 @@ path=(
     ${HOME}/bin
     ${HOME}/go/bin
     /usr/local/go/bin
-    ${HOME}/.nvm
     ${path}
+    ${HOME}/.nvim/nvim-macos/bin
 )
 
 export EDITOR=nvim
