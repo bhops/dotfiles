@@ -250,15 +250,6 @@ require("lazy").setup({
 			vim.cmd.colorscheme("everforest")
 		end,
 	},
-	--{
-	--	"rose-pine/neovim",
-	--	name = "rose-pine",
-	--	lazy = false,
-	--	priority = 1000,
-	--	config = function()
-	--		vim.cmd.colorscheme("rose-pine")
-	--	end,
-	--},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
@@ -302,6 +293,12 @@ require("telescope").setup({
 				["<C-u>"] = false,
 				["<C-d>"] = false,
 			},
+		},
+	},
+	pickers = {
+		find_files = {
+			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 		},
 	},
 })
@@ -375,14 +372,7 @@ local servers = {
 	},
 }
 
-require("neodev").setup({
-	override = function(root_dir, library)
-		if root_dir:find("~/dotfiles", 1, true) == 1 then
-			library.enabled = true
-			library.plugins = true
-		end
-	end,
-})
+require("neodev").setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
