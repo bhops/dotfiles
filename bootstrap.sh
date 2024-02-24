@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd $(dirname "$0")/scripts
+cd "$(dirname "$0")/scripts" || exit 1
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   ./homebrew.sh
