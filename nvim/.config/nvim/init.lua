@@ -16,6 +16,20 @@ vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Disable arrow keys
+vim.keymap.set("n", "<Up>", function()
+	print("use k")
+end)
+vim.keymap.set("n", "<Down>", function()
+	print("use j")
+end)
+vim.keymap.set("n", "<Left>", function()
+	print("use h")
+end)
+vim.keymap.set("n", "<Right>", function()
+	print("use l")
+end)
+
 require("lazy").setup({
 	{
 		"neovim/nvim-lspconfig",
@@ -361,7 +375,14 @@ local servers = {
 	},
 }
 
-require("neodev").setup()
+require("neodev").setup({
+	override = function(root_dir, library)
+		if root_dir:find("~/dotfiles", 1, true) == 1 then
+			library.enabled = true
+			library.plugins = true
+		end
+	end,
+})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
