@@ -8,6 +8,7 @@
      "fzf"
      "git"
      "jq"
+     "nodejs"
      "ripgrep"
      "shellcheck"
      "tmux"
@@ -21,8 +22,7 @@
 #!/bin/bash
 
 set -eufo pipefail
-
+curl -fsSL https://deb.nodesource.com/setup_lts.x | {{ if $sudo -}}{{ $sudo }}-E{{- end }} bash -
 {{ $sudo }}apt-get update
 {{ $sudo }}apt-get install -y {{ $packages | join " " }}
-
 {{ end -}}
