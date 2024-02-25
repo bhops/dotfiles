@@ -280,7 +280,7 @@ vim.o.sidescrolloff = 8
 vim.o.tabstop = 2
 
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "go", "lua", "rust", "vim", "http", "json" },
+	ensure_installed = { "go", "lua", "rust", "vim", "http", "json", "yaml", "toml" },
 	highlight = { enable = true },
 	indent = { enable = false },
 })
@@ -350,6 +350,7 @@ end
 
 local servers = {
 	bash_ls = {},
+	yaml_ls = {},
 	vale_ls = {},
 	gopls = {
 		cmd = { "gopls", "serve" },

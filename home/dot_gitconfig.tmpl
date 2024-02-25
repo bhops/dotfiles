@@ -21,8 +21,8 @@
 [init]
 	defaultBranch = main
 [user]
-	name = Brandon Hops
-	email = hops.brandon@gmail.com
+	name = {{ .name | quote }}
+	email = {{ .email | quote }}
 [push]
 	autoSetupRemote = true
 

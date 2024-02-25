@@ -1,0 +1,41 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash -e
+if ! command -v nvim &> /dev/null; then
+  dir=$(mktemp -d)
+  tarfile="$dir"/nvim-macos.tar.gz
+  curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz -o "$tarfile"
+  # Avoid the "unknown developer" warning
+  xattr -c "$tarfile"
+  mkdir -p ~/.nvim
+  tar xzvf "$tarfile" -C ~/.nvim
+fi
+{{ else if eq .chezmoi.os "linux" -}}
+#!/bin/bash -e
+
+if ! command -v sudo &> /dev/null; then
+  sudo=""
+else
+  sudo="sudo"
+fi
+
+if ! command -v nvim &> /dev/null; then
+  tmpdir=$(mktemp -d)
+  cd "$tmpdir"
+  $sudo apt update
+  {{ if eq .chezmoi.arch "amd64" -}}
+  $sudo apt-get install curl -y
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+  rm -rf /opt/nvim
+  $sudo tar -C /opt -xzf nvim-linux64.tar.gz
+  $sudo mv /opt/nvim-linux64 /opt/nvim-linux
+  {{ else -}}
+  $sudo apt-get install git ninja-build gettext cmake unzip curl -y
+  git clone -b nightly --single-branch --depth 1 https://github.com/neovim/neovim.git
+  cd neovim
+  make CMAKE_BUILD_TYPE=Release
+  make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=/opt/nvim-linux"
+  $sudo make install
+  {{ end -}}
+fi
+
+{{ end -}}

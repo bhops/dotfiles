@@ -1,0 +1,52 @@
+#!/bin/bash
+
+{{ if and (not .work) (not .ephemeral) -}}
+{{ $brews := list
+  "bash"
+  "bash-completion@2"
+  "curl"
+  "fzf"
+  "gh"
+  "git"
+  "go"
+  "ipcalc"
+  "jq"
+  "mas"
+  "openssl@3"
+  "ripgrep"
+  "rustup"
+  "stow"
+  "tmux"
+  "zsh" -}}
+
+{{ $casks := list
+  "1password"
+  "1password-cli"
+  "docker"
+  "font-jetbrains-mono"
+  "font-jetbrains-mono-nerd-font"
+  "google-chrome"
+  "kitty"
+  "transmission"
+  "raycast"
+  "rectangle"
+  "spotify" -}}
+
+{{ $mas := list
+
+-}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+{{ range $mas -}}
+mas "{{ .name }}", id: {{ .id }}
+{{ end -}}
+EOF
+{{ end -}}
+
+

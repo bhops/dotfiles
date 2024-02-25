@@ -1,0 +1,36 @@
+ZSH_DISABLE_COMPFIX="true"
+
+{{- $paths := list }}
+{{- $homeDir := .chezmoi.homeDir }}
+{{- range $_, $relPath := list "bin" "go/bin" ".cargo/bin" ".local/bin" ".nvim/nvim-macos/bin" }}
+{{-    $path := joinPath $homeDir $relPath }}
+{{-   if stat $path }}
+{{-     $paths = mustAppend $paths $path }}
+{{-   end }}
+{{- end }}
+{{- if $paths }}
+export PATH={{ toStrings $paths | join ":" }}:$PATH
+{{- end }}
+
+if [[ -f "$HOME/.local/bin/starship" ]]; then
+  eval "$($HOME/.local/bin/starship init zsh)"
+fi
+
+export EDITOR=nvim
+
+alias g="git"
+alias gs="git s"
+alias k="kubectl"
+alias vim="nvim"
+
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+fi
+
+if [[ -f "$HOME/.cargo/env" ]]; then
+  source "$HOME/.cargo/env"
+fi
+
+if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
+  source "$HOME/.config/op/plugins.sh"
+fi
