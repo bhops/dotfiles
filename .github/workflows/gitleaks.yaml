@@ -1,5 +1,10 @@
 name: gitleaks
-on: [pull_request, push, workflow_dispatch]
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 6" # run at 4 AM on Saturday
 jobs:
   scan:
     name: gitleaks
@@ -11,3 +16,5 @@ jobs:
       - uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_UPLOAD_ARTIFACT: false
+          GITLEAKS_NOTIFY_USER_LIST: "@bhops"
