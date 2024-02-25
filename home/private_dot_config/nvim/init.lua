@@ -349,8 +349,8 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {
-	bash_ls = {},
-	yaml_ls = {},
+	bashls = {},
+	yamlls = {},
 	vale_ls = {},
 	gopls = {
 		cmd = { "gopls", "serve" },
