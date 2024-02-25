@@ -1,5 +1,5 @@
 {{- $work := false -}}
-{{- $ephemeral := false -}}
+{{- $devcontainer := false -}}
 {{- $headless := false -}}
 
 {{/* work around unreliable hostname on darwin */}}
@@ -8,14 +8,21 @@
 {{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
 {{-   if eq $computerName "Brandon’s MacBook Pro" -}}
 {{-     $hostname = "Brandons-MBP" -}}
+{{-   else if eq $computerName "WORK_COMPUTER_NAME" -}}
+{{-      $work = true -}}
+{{-      $hostname = $computerName -}}
 {{-   else -}}
 {{-     $hostname = $computerName -}}
 {{-   end -}}
 {{- end -}}
 
+{{- if env "IS_WORK_COMPUTER" -}}
+{{-   $work = true -}}
+{{- end -}}
+
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
 {{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
-{{-   $ephemeral = true -}}
+{{-   $devcontainer = true -}}
 {{-   $headless = true -}}
 {{- end -}}
 
@@ -26,8 +33,8 @@
 
 [data]
     name = "Brandon Hops"
-    ephemeral = {{ $ephemeral }}
     email = {{ $email | quote }}
     work = {{ $work }}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
+    devcontainer = {{ $devcontainer }}

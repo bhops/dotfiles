@@ -1,6 +1,6 @@
 #!/bin/bash
 
-{{ if and (not .work) (not .ephemeral) -}}
+{{ if not (or .work .devcontainer) -}}
 {{ $brews := list
   "bash"
   "bash-completion@2"

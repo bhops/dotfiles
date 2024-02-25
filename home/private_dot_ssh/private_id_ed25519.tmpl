@@ -1,3 +1,3 @@
-{{- if not .work }}
+{{- if not (or .work .devcontainer) }}
 {{-   onepasswordRead "op://Personal/SSH Key/private key" -}}
 {{- end -}}

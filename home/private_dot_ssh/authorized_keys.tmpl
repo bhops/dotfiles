@@ -1,3 +1,5 @@
+{{- if not (or .work .devcontainer) -}}
 {{ range (gitHubKeys "bhops") -}}
 {{   .Key }}
+{{ end -}}
 {{ end -}}
