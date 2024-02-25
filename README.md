@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-bash ./bootstrap.sh
+bash ./install.sh
 ```
 
 ## License
