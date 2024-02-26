@@ -3,3 +3,10 @@
 {{   .Key }}
 {{ end -}}
 {{ end -}}
+{{- if .work -}}
+{{   range (gitHubKeys "bhops") -}}
+{{     if regexMatch "Z64OMIQ==$" .Key -}}
+{{       .Key }}
+{{     end -}}
+{{   end -}}
+{{ end -}}
