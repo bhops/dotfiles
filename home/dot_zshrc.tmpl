@@ -1,6 +1,11 @@
 ZSH_DISABLE_COMPFIX="true"
 
 {{- $paths := list }}
+{{- range $_, $absPath:= list "/opt/nvim-linux/bin" }}
+{{-   if stat $absPath }}
+{{-     $paths = mustAppend $paths $absPath }}
+{{-   end }}
+{{- end }}
 {{- $homeDir := .chezmoi.homeDir }}
 {{- range $_, $relPath := list "bin" "go/bin" ".cargo/bin" ".local/bin" ".nvim/nvim-macos/bin" }}
 {{-    $path := joinPath $homeDir $relPath }}
@@ -36,6 +41,6 @@ if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
   source "$HOME/.config/op/plugins.sh"
 fi
 
-if [[ -f "$HOME/.asdf/asdf.sh"]]; then
+if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
   . $HOME/.asdf/asdf.sh
 fi
