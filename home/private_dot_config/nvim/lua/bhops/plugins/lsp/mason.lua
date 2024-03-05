@@ -16,6 +16,7 @@ return {
 			ensure_installed = {
 				"lua_ls",
 				"gopls",
+				"terraformls",
 			},
 			automatic_installation = true,
 		})
@@ -31,6 +32,8 @@ return {
 				"shellcheck",
 				"shfmt",
 				"stylua",
+				"tfsec",
+				"tflint",
 			},
 		})
 	end,

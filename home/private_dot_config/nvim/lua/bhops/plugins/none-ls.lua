@@ -16,6 +16,8 @@ return {
 				"stylua",
 				"black",
 				"pylint",
+				"tflint",
+				"tfsec",
 			},
 		})
 
@@ -31,7 +33,9 @@ return {
 				formatting.stylua,
 				formatting.isort,
 				formatting.black,
+				formatting.terraform_fmt,
 				diagnostics.pylint,
+				diagnostics.tfsec,
 			},
 			on_attach = function(current_client, bufnr)
 				if current_client.supports_method("textDocument/formatting") then
