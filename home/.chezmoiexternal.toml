@@ -7,12 +7,12 @@
 
 [".config/kitty/current-theme.conf"]
     type = "file"
-    url = "https://raw.githubusercontent.com/pauchiner/pastelnight.nvim/master/extras/kitty/pastelnight_default.conf"
+    url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/master/extras/kitty/tokyonight_night.conf"
     refreshPeriod = "168h"
 
-[".config/iterm2/pastelnight_default.itermcolors"]
+[".config/iterm2/tokyonight_night.itermcolors"]
     type = "file"
-    url = "https://raw.githubusercontent.com/pauchiner/pastelnight.nvim/master/extras/iterm/pastelnight_default.itermcolors"
+    url = "https://raw.githubusercontent.com/folke/tokyonight.nvim/master/extras/iterm/tokyonight_night.itermcolors"
     refreshPeriod = "168h"
 
 {{ $starshipVersion := "1.17.1" -}}

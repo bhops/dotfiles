@@ -1,8 +1,11 @@
 return {
-	"pauchiner/pastelnight.nvim",
+	"folke/tokyonight.nvim",
 	lazy = false,
 	priority = 1000, -- load before other plugins
 	config = function()
-		vim.cmd.colorscheme("pastelnight")
+		require("tokyonight").setup({
+			style = "night",
+		})
+		vim.cmd.colorscheme("tokyonight")
 	end,
 }
