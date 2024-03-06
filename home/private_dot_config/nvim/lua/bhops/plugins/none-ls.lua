@@ -34,6 +34,8 @@ return {
 				formatting.isort,
 				formatting.black,
 				formatting.terraform_fmt,
+				formatting.goimports,
+				formatting.gofumpt,
 				diagnostics.pylint,
 				diagnostics.tfsec,
 			},
