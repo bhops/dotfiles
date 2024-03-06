@@ -1,8 +1,8 @@
 return {
-	"sainnhe/everforest",
+	"pauchiner/pastelnight.nvim",
 	lazy = false,
 	priority = 1000, -- load before other plugins
 	config = function()
-		vim.cmd.colorscheme("everforest")
+		vim.cmd.colorscheme("pastelnight")
 	end,
 }

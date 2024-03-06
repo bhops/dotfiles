@@ -5,6 +5,16 @@
    stripComponents = 1
    refreshPeriod = "168h"
 
+[".config/kitty/current-theme.conf"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/pauchiner/pastelnight.nvim/master/extras/kitty/pastelnight_default.conf"
+    refreshPeriod = "168h"
+
+[".config/iterm2/pastelnight_default.itermcolors"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/pauchiner/pastelnight.nvim/master/extras/iterm/pastelnight_default.itermcolors"
+    refreshPeriod = "168h"
+
 {{ $starshipVersion := "1.17.1" -}}
 {{ $starshipTgz := "" -}}
 {{ if eq .chezmoi.os "darwin" -}}
