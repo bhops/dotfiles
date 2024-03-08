@@ -18,6 +18,7 @@ return {
 				"pylint",
 				"tflint",
 				"tfsec",
+				"buildifier",
 			},
 		})
 
@@ -38,6 +39,7 @@ return {
 				formatting.gofumpt,
 				diagnostics.pylint,
 				diagnostics.tfsec,
+				diagnostics.buildifier,
 			},
 			on_attach = function(current_client, bufnr)
 				if current_client.supports_method("textDocument/formatting") then
