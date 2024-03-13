@@ -28,3 +28,4 @@ opt.splitright = true
 opt.splitbelow = true
 
 opt.swapfile = false -- disable swapfile
+opt.conceallevel = 1
