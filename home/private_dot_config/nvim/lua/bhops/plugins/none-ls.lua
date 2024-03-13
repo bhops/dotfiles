@@ -38,6 +38,7 @@ return {
 				formatting.terraform_fmt,
 				formatting.goimports,
 				formatting.gofumpt,
+				formatting.buildifier,
 				diagnostics.pylint,
 				diagnostics.tfsec,
 				diagnostics.buildifier,
