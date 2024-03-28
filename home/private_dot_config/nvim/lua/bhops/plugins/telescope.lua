@@ -32,6 +32,6 @@ return {
 		keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Search Help" })
 		keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "Search Current Word" })
 		keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Search Grep" })
-		keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Search Diangostics" })
+		keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Search Diagnostics" })
 	end,
 }
