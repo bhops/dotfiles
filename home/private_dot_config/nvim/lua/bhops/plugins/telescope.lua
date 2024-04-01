@@ -7,14 +7,17 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 
-	pickers = {
-		find_files = {
-			-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+	opts = {
+		pickers = {
+			find_files = {
+				-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+				find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+			},
 		},
 	},
-	config = function()
+	config = function(_, opts)
 		local telescope = require("telescope")
+		telescope.setup(opts)
 		local builtin = require("telescope.builtin")
 		local keymap = vim.keymap
 
