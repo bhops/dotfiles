@@ -10,7 +10,7 @@ return {
 		local keymap = vim.keymap
 
 		local opts = { noremap = true, silent = true }
-		local on_attach = function(client, bufnr)
+		local on_attach = function(_, bufnr)
 			opts.buffer = bufnr
 
 			opts.desc = "Show LSP references"
