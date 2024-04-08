@@ -14,9 +14,10 @@ return {
 
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"lua_ls",
 				"gopls",
+				"lua_ls",
 				"terraformls",
+				"yamlls",
 			},
 			automatic_installation = true,
 		})
