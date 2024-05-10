@@ -44,3 +44,7 @@ fi
 if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
   . $HOME/.asdf/asdf.sh
 fi
+
+if type direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
