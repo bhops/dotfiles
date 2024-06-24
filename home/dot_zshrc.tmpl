@@ -25,6 +25,41 @@ alias gs="git s"
 alias k="kubectl"
 alias vim="nvim"
 
+
+local devcon() {
+  trap return ERR
+  local usage=(
+    "devcon [-h|--help]"
+    "devcon [-r|--rebuild] repo_root"
+  )
+    zmodload zsh/zutil
+    zparseopts -D -F -- \
+      {h,-help}=flag_help \
+      {r,-rebuild}=flag_rebuild ||
+      return 1
+
+  [[ -z "$flag_help" ]] || { print -l $usage && return }
+  [[ -n "$1" ]] || { print -l $usage && return }
+
+  up_flags=""
+  if [[ -n "$flag_rebuild" ]]; then
+    up_flags+="--remove-existing-container"
+  fi
+
+  additional_features='
+  {
+    "ghcr.io/devcontainers/features/nix:1": {}
+  }'
+
+  devcontainer up \
+    $up_flags \
+    --workspace-folder "$1" \
+    --additional-features "${additional_features}" \
+    --dotfiles-repository bhops/devcon-dotfiles
+
+  devcontainer exec --workspace-folder "$1" bash -c "TERM=$TERM LANG=$LANG bash"
+}
+
 if [[ -f ~/.fzf.zsh ]]; then
   source ~/.fzf.zsh
 fi
