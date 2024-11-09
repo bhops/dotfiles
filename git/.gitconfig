@@ -18,16 +18,7 @@
 [init]
 	defaultBranch = main
 [user]
-	name = {{ .name | quote }}
-	email = {{ .email | quote }}
+	name = "Brandon Hops"
+	email = "hops.brandon@gmail.com"
 [push]
 	autoSetupRemote = true
-{{- if .work }}
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
-[filter "lfs"]
-       clean = git-lfs clean -- %f
-       smudge = git-lfs smudge -- %f
-       process = git-lfs filter-process
-       required = true
-{{- end -}}
