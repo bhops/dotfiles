@@ -1,5 +1,5 @@
 ZSH_DISABLE_COMPFIX="true"
-export PATH=/Users/bhops/go/bin:/Users/bhops/.cargo/bin
+export PATH=/Users/bhops/go/bin:/Users/bhops/.cargo/bin:$PATH
 
 export EDITOR=nvim
 
