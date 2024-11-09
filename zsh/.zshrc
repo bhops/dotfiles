@@ -17,10 +17,6 @@ if [[ -f "$HOME/.cargo/env" ]]; then
   source "$HOME/.cargo/env"
 fi
 
-if [[ -f "$HOME/.config/op/plugins.sh" ]]; then
-  source "$HOME/.config/op/plugins.sh"
-fi
-
 if type direnv &> /dev/null; then
   eval "$(direnv hook zsh)"
 fi
