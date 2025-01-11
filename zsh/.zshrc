@@ -24,3 +24,4 @@ fi
 if type mise &> /dev/null; then
   eval "$(mise activate zsh)"
 fi
+eval "$(/opt/homebrew/bin/mise activate zsh)"

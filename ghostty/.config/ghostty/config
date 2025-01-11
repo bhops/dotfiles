@@ -1,0 +1,4 @@
+font-family = "JetbrainsMono Nerd Font Mono"
+font-size = 16
+theme = catppuccin-mocha
+shell-integration = zsh
