@@ -26,6 +26,7 @@ cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 cask "ghostty"
 cask "iterm2"
+cask "slack"
 cask "signal"
 cask "spotify"
 mas "1Password for Safari", id: 1569813296
